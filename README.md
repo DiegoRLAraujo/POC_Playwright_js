@@ -49,11 +49,11 @@ Definições de Títulos do teste : {
         1. Deve-se adotar padrões únicos com o título+ID de cada item da funcionalida presente no gerenciador de projeto, trantando assim da mesma funcionalidade.
 }
 
-=================================================================================================================
-|                                                                                                               |
-|                                            Acadêmico - Boa leitura:                                           |
-|                                                                                                               |
-=================================================================================================================
+	=================================================================================================================
+	|                                                                                                               |
+	|                                            Acadêmico - Boa leitura:                                           |
+	|                                                                                                               |
+	=================================================================================================================
 
         Não existe tecnologia perfeita, existe a tecnologia que melhor atende a determinadas necessidades.
 
