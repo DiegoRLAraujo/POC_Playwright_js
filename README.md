@@ -57,7 +57,7 @@ Definições de Títulos do teste : {
 	|                                                                                                               |
 	=================================================================================================================
 
-        Não existe tecnologia perfeita, existe a tecnologia que melhor atende a determinadas necessidades.
+        	Não existe tecnologia perfeita, existe a tecnologia que melhor atende a determinadas necessidades.
 
 1. Porque automatizar os testes?
     *A automação tem o intuito de diminuir erros e falhas humanas em tarefas extensas e repetitivas, causadas por exaustão, e outras variáveis de condições humanas.
@@ -108,7 +108,6 @@ Definições de Títulos do teste : {
         ii.	Unitários;
         iii.Componentes;
         iv.	Integração entre componentes;
-
     b.	Integração entre sistemas – Frontend / Backend:
         i.	API – Arquitetura;
             1.Rest?;
@@ -117,7 +116,6 @@ Definições de Títulos do teste : {
             1. Micros-serviços consumidos diretamente pelo FrontEnd.
                 a.Realizando determinadas requisições para o Backend, obtendo assim, informações que precisa apresentar na interface.
         iii. API Micros-serviços – São Micro Serviços que o Frontend não consome diretamente, porém, necessita de suas existências. Estes micros serviços são puramente tratados e engenhados na camada Backend – Backend. Ou seja, API puramente de micros serviços que é executada e consumida apenas de um banco de dados com outros Servers que não são apresentados na Interface do Usuário.
-
     c.	Sistema:
         i.	Não Funcionais:
             1.	Performance:
@@ -131,7 +129,6 @@ Definições de Títulos do teste : {
                     i.	“Se determinado componente está realizando, ou não, a funcionalidade que foi projetado”.
                 b.	Atendendo os critérios de sistema técnicos e critérios de aceite.
                     i.	Visão técnica (Profissional técnico /Q.A – Profissional Ubíquo entre desenvolvedor e Produto).
-
     d.	Aceitação:
         i.	Validações das realizações de cada funcionalidade projetada dos componentes visíveis.
         ii.	Atendendo os critérios de aceite (requisitos de regras de negócio).
@@ -143,7 +140,6 @@ Definições de Títulos do teste : {
             3.	Teste de Aceite Contratual e Normativo;
             4.	Teste Beta;
             5.	Teste Alfa.
-
     e.	Para evitar a sobreposição de atividades de testes, os níveis de testes são diferenciados pelos atributos:
         i.	    Objeto de teste;
         ii.	   Objetivos do teste;
@@ -285,7 +281,7 @@ Entretanto, é um nível de teste (Segurança), muito importante a ser avaliado.
     j.	O DevOps tem seus riscos e desafios, que incluem:
     i.	O pipeline de entrega de DevOps deve ser definido e estabelecido;
     ii.	As ferramentas de CI/CD devem ser introduzidas e mantidas;
-    iii.	A automação de testes requer recursos adicionais e pode ser difícil de estabelecer e manter. Embora o DevOps venha com um alto nível de testes automatizados, os testes manuais - especialmente da perspectiva do usuário - ainda serão necessários.
+    iii.A automação de testes requer recursos adicionais e pode ser difícil de estabelecer e manter. Embora o DevOps venha com um alto nível de testes automatizados, os testes manuais - especialmente da perspectiva do usuário - ainda serão necessários.
     k.	
 
 2.	Apresentar para equipe.
