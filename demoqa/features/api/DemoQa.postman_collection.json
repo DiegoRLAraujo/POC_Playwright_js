@@ -1,0 +1,518 @@
+{
+	"info": {
+		"_postman_id": "cf72bc65-f80e-4893-b167-f6a231391c55",
+		"name": "DemoQa",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "14949745"
+	},
+	"item": [
+		{
+			"name": "Account",
+			"item": [
+				{
+					"name": "User_Create",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Response status code is 201\", function () {\r",
+									"    pm.expect(pm.response.code).to.equal(201);\r",
+									"});\r",
+									"\r",
+									"\r",
+									"pm.test(\"Response time is less than 300ms\", function () {\r",
+									"  pm.expect(pm.response.responseTime).to.be.below(300);\r",
+									"});\r",
+									"\r",
+									"\r",
+									"pm.test(\"Response has the required fields - userID, username, and books\", function () {\r",
+									"    const responseData = pm.response.json();\r",
+									"    \r",
+									"    pm.expect(responseData).to.be.an('object');\r",
+									"    pm.expect(responseData).to.have.property('userID');\r",
+									"    pm.expect(responseData).to.have.property('username');\r",
+									"    pm.expect(responseData).to.have.property('books');\r",
+									"});\r",
+									"\r",
+									"\r",
+									"pm.test(\"UserID and username should be non-empty strings\", function () {\r",
+									"  const responseData = pm.response.json();\r",
+									"  \r",
+									"  pm.expect(responseData).to.be.an('object');\r",
+									"  pm.expect(responseData.userID).to.be.a('string').and.to.have.lengthOf.at.least(1, \"UserID should be a non-empty string\");\r",
+									"  pm.expect(responseData.username).to.be.a('string').and.to.have.lengthOf.at.least(1, \"Username should be a non-empty string\");\r",
+									"});\r",
+									"\r",
+									"\r",
+									"pm.test(\"Books array is present and empty\", function () {\r",
+									"    const responseData = pm.response.json();\r",
+									"    \r",
+									"    pm.expect(responseData).to.be.an('object');\r",
+									"    pm.expect(responseData.books).to.exist.and.to.be.an('array').that.is.empty;\r",
+									"});\r",
+									"\r",
+									"\r",
+									"pm.test(\"Response has the Content-Type header set to application/json\", function () {\r",
+									"    pm.expect(pm.response.headers.get('Content-Type')).to.include('application/json');\r",
+									"});\r",
+									"\r",
+									"// Check for a specific error message in the response\r",
+									"pm.test(\"Check for specific error message in the response\", function () {\r",
+									"    const responseData = pm.response.json();\r",
+									"    // Replace 'specificErrorMessage' with the actual error message you want to check for\r",
+									"    pm.expect(responseData.error).to.eql('specificErrorMessage');\r",
+									"});\r",
+									"\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"userName\": \"{{userName}}\",\r\n  \"password\": \"{{password}}\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url_demoqa}}/Account/v1/User",
+							"host": [
+								"{{base_url_demoqa}}"
+							],
+							"path": [
+								"Account",
+								"v1",
+								"User"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GenerateToken",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"\r",
+									"var jsonData = JSON.parse(responseBody);\r",
+									"\r",
+									"\r",
+									"pm.test(\"Response status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"\r",
+									"pm.test(\"Response includes a valid JWT token in the body\", function () {\r",
+									"    const responseData = pm.response.json();\r",
+									"    \r",
+									"    pm.expect(responseData.token).to.be.a('string');\r",
+									"    pm.expect(responseData.token).to.match(/^[A-Za-z0-9-_]+\\.[A-Za-z0-9-_]+\\.[A-Za-z0-9-_=]+$/);\r",
+									"\tconsole.log();\r",
+									"\tconsole.log(\"token\", jsonData.token);\r",
+									"\tpm.environment.set(\"Bearer_tokens\", jsonData.token)\r",
+									"\tconsole.log();\r",
+									"});\r",
+									"\r",
+									"\r",
+									"pm.test(\"Content-Type header is present and set to application/json\", function () {\r",
+									"    pm.expect(pm.response.headers.get(\"Content-Type\")).to.exist;\r",
+									"    pm.expect(pm.response.headers.get(\"Content-Type\")).to.equal(\"application/json\");\r",
+									"});\r",
+									"\r",
+									"\r",
+									"pm.test(\"Request duration is within an acceptable range\", function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(1000);\r",
+									"});\r",
+									"\r",
+									"\r",
+									"pm.test(\"Response body includes the field 'expires_in' with a valid numeric value\", function () {\r",
+									"    const responseData = pm.response.json();\r",
+									"    \r",
+									"    pm.expect(responseData).to.have.property('expires_in').that.is.a('number');\r",
+									"});\r",
+									"\r",
+									"\r",
+									"pm.test(\"Token type is Bearer\", function () {\r",
+									"    const responseData = pm.response.json();\r",
+									"    \r",
+									"    pm.expect(responseData.token_type).to.equal(\"Bearer\");\r",
+									"});\r",
+									"\r",
+									"\r",
+									"pm.test(\"Verify that the refresh_token is present and is a non-empty string\", function () {\r",
+									"    const responseData = pm.response.json();\r",
+									"    \r",
+									"    pm.expect(responseData).to.be.an('object');\r",
+									"    pm.expect(responseData.refresh_token).to.be.a('string').and.to.have.lengthOf.at.least(1, \"Value should not be empty\");\r",
+									"});\r",
+									"\r",
+									"\r",
+									"pm.test(\"Scope field is present and has the expected value\", function () {\r",
+									"  const responseData = pm.response.json();\r",
+									"  \r",
+									"  pm.expect(responseData).to.have.property('scope');\r",
+									"  pm.expect(responseData.scope).to.equal('expected_value');\r",
+									"});\r",
+									"\r",
+									"\r",
+									"pm.test(\"Expires_in is a positive integer\", function () {\r",
+									"    const responseData = pm.response.json();\r",
+									"    \r",
+									"    pm.expect(responseData.expires_in).to.be.a('number');\r",
+									"    pm.expect(responseData.expires_in).to.be.above(0);\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"userName\": \"{{userName}}\",\r\n  \"password\": \"{{password}}\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url_demoqa}}/Account/v1/GenerateToken",
+							"host": [
+								"{{base_url_demoqa}}"
+							],
+							"path": [
+								"Account",
+								"v1",
+								"GenerateToken"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Authorized",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"userName\": \"{{userName}}\",\r\n  \"password\": \"{{password}}\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url_demoqa}}/Account/v1/Authorized",
+							"host": [
+								"{{base_url_demoqa}}"
+							],
+							"path": [
+								"Account",
+								"v1",
+								"Authorized"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "User {UUID}",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url_demoqa}}/Account/v1/User/{{UUID}}",
+							"host": [
+								"{{base_url_demoqa}}"
+							],
+							"path": [
+								"Account",
+								"v1",
+								"User",
+								"{{UUID}}"
+							],
+							"query": [
+								{
+									"key": "",
+									"value": "",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "User {UUID}",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{base_url_demoqa}}/Account/v1/User/{{UUID}}",
+							"host": [
+								"{{base_url_demoqa}}"
+							],
+							"path": [
+								"Account",
+								"v1",
+								"User",
+								"{{UUID}}"
+							],
+							"query": [
+								{
+									"key": "",
+									"value": "",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"auth": {
+				"type": "bearer",
+				"bearer": [
+					{
+						"key": "token",
+						"value": "{{Bearer_tokens}}",
+						"type": "string"
+					}
+				]
+			},
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"packages": {},
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"packages": {},
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "BookStore",
+			"item": [
+				{
+					"name": "Books",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url_demoqa}}/BookStore/v1/Books",
+							"host": [
+								"{{base_url_demoqa}}"
+							],
+							"path": [
+								"BookStore",
+								"v1",
+								"Books"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Books",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"userId\": \"string\",\r\n  \"collectionOfIsbns\": [\r\n    {\r\n      \"isbn\": \"string\"\r\n    }\r\n  ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url_demoqa}}/BookStore/v1/Books",
+							"host": [
+								"{{base_url_demoqa}}"
+							],
+							"path": [
+								"BookStore",
+								"v1",
+								"Books"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Books {ISBN}",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"userId\": \"string\",\r\n  \"isbn\": \"string\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url_demoqa}}/BookStore/v1/Books{{ISBN}}",
+							"host": [
+								"{{base_url_demoqa}}"
+							],
+							"path": [
+								"BookStore",
+								"v1",
+								"Books{{ISBN}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Books",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{base_url_demoqa}}/BookStore/v1/Books{{UserId}}",
+							"host": [
+								"{{base_url_demoqa}}"
+							],
+							"path": [
+								"BookStore",
+								"v1",
+								"Books{{UserId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Book",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url_demoqa}}/BookStore/v1/Book{{ISBN}}",
+							"host": [
+								"{{base_url_demoqa}}"
+							],
+							"path": [
+								"BookStore",
+								"v1",
+								"Book{{ISBN}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Book",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"isbn\": \"string\",\r\n  \"userId\": \"string\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url_demoqa}}/BookStore/v1/Book",
+							"host": [
+								"{{base_url_demoqa}}"
+							],
+							"path": [
+								"BookStore",
+								"v1",
+								"Book"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"auth": {
+		"type": "basic",
+		"basic": [
+			{
+				"key": "password",
+				"value": "{{password}}",
+				"type": "string"
+			},
+			{
+				"key": "username",
+				"value": "{{userName}}",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}
