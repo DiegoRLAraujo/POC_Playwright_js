@@ -2,11 +2,10 @@
 
 	POC - Proof of Concept - Automação de testes - Playwright - JS
 
-
-
 	Esta POC está em sua estrutura simples, e tem a finalidade de apenas apresentar uma automação de testes utilizando o Framework Microsoft Playwright escrito em JavaScript
 
 Objetivos : {
+
         https://demoqa.com
     1 *Acesso e Interação com a Home*;
     2 *Interação com o menu <'widgets'>*;
@@ -15,6 +14,7 @@ Objetivos : {
 }
 
 Orientações a manter boas práticas : {
+
     *Respeite Page Objects (estrutura - organizada);
     *Clean Code (comentários apenas com o essêncial);
     *Sigas os padrões de Orientação a Objetos (OOP - Object-Oriented Programming);
@@ -24,12 +24,14 @@ Orientações a manter boas práticas : {
 }
 
 Repositórios : {
+
     *A Branch Main sempre será a principal e somente sofrerá alterações, após Code Review antes da PullReques;
     *A Branch develop, por default, sofre as alterações diretas;
     *Caso necessário, cria-se uma nova Branch.
 }
 
 dependências : {
+
     *Playwright
     *Node.JS
     *npm
@@ -37,6 +39,7 @@ dependências : {
 }
 
 Referências : {
+
     https://www.w3.org
     https://www.w3.org/TR/webdriver1/
     https://www.playwright.dev/
@@ -44,6 +47,7 @@ Referências : {
 }
 
 Definições de Títulos de testes (Tags) : {
+
     *Utilizar convenções padronizadas. Sugestão.: (snake_case);
     *O título deve ser escrito em português;
     *Cada teste deve ter um título que seja descritivo e que seja possível identificar objetivamente o que está sendo testado;
@@ -52,6 +56,7 @@ Definições de Títulos de testes (Tags) : {
 }
 
 Execução dos cenários : {
+
     *Para executar os cenários de teste obrigatóriamente deve estar na raiz do projeto pelo terminal e insira o seguinte comando : [
 
 	*Execução de todos os testes contidos em um aquivo
