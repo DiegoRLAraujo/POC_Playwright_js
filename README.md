@@ -43,12 +43,46 @@ Referências : {
     https://github.com/microsoft/playwright
 }
 
-Definições de Títulos do teste : {
+Definições de Títulos de testes (Tags) : {
     *Utilizar convenções padronizadas. Sugestão.: (snake_case);
     *O título deve ser escrito em português;
     *Cada teste deve ter um título que seja descritivo e que seja possível identificar objetivamente o que está sendo testado;
     *Caso esteja tratando (testando) qualquer item de um gerenciador de projetos como por exemplo.: Jira;
-        1. Deve-se adotar padrões únicos com o título+ID de cada item da funcionalida presente no gerenciador de projeto, trantando assim da mesma funcionalidade.
+        1. Deve-se adotar padrões únicos com o título de cada item da funcionalida presente no gerenciador de projeto, trantando assim da mesma funcionalidade.
+}
+
+Execução dos cenários : {
+    *Para executar os cenários de teste obrigatóriamente deve estar na raiz do projeto pelo terminal e insira o seguinte comando : [
+
+	*Execução de todos os testes contidos em um aquivo
+        npx playwright test <nome_do_arquivo_completo>
+        
+        *Execução de apenas um dos testes presente em um arquivo
+        npx playwright test <nome_do_arquivo_completo> -g <"nome_do_teste">
+    
+        Exemplo.:
+        *All tests
+        npx playwright test 1home.spec.js
+    
+        *Only test
+        npx playwright test 1home.spec.js -g "Interação_com_a_Home"
+    ];
+
+    *Abre a interface gráfica de suíte de testes : [
+        npx playwright test --ui
+    ];
+
+    *Para abrir o último relatório HTML executado : [
+        npx playwright show-report
+    ];
+
+}
+
+
+Obs : {
+    Em > node_modules\playwright\lib\common\config.js
+    foi alterado a const defaultTimeout (antes 30000) (depois 60000)
+    A alteração foi realizada pelo motvo de algumas vezes resultava em falha no Test por não ter conseguido realizar o objetivo dentro do tempo de 30s - resultando em Falsos negativos.
 }
 
 	=================================================================================================================
