@@ -1,6 +1,8 @@
 
-
-
+fetch("/Account/v1/User", requestOptions)
+  .then((response) => response.text())
+  .then((result) => console.log(result))
+  .catch((error) => console.error(error));
 
 const myHeaders = new Headers();
 myHeaders.append("Content-Type", "application/json");
@@ -18,7 +20,3 @@ const requestOptions = {
   redirect: "follow"
 };
 
-fetch("/Account/v1/User", requestOptions)
-  .then((response) => response.text())
-  .then((result) => console.log(result))
-  .catch((error) => console.error(error));
