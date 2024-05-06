@@ -93,7 +93,7 @@ Obs : {
     Em > node_modules\playwright\lib\common\config.js
     foi alterado a const defaultTimeout (antes 30000) (depois 60000)
     A alteração foi realizada pelo motvo de algumas vezes resultava em falha no Test por não ter conseguido realizar o objetivo dentro do tempo de 30s - resultando em Falsos negativos.
-=======
+
         1. Deve-se adotar padrões únicos com o título+ID de cada item da funcionalida presente no gerenciador de projeto, trantando assim da mesma funcionalidade.
 >>>>>>> parent of e8b8f11 (Update README.md)
 }
